@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:verbose": "NODE_OPTIONS='--max-old-space-size=4096' NEXT_TELEMETRY_DISABLED=1 next dev 2>&1 | tee next-dev.log",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

@@ -35,6 +35,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onOpenTracker }) => {
               </span>
             </h1>
 
+            <p className="text-base sm:text-lg font-bold text-sky-700">
+              Let us do your dirty work.
+            </p>
+
             {/* Subtitle */}
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
               We pick up your laundry at your doorstep in Milimani, CBD, Tom Mboya & Poly, wash and fold it with verified commercial laundromats, and deliver it back in 24-48 hours.
