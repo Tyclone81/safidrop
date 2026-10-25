@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, MessageCircle, Package, Search, Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, MessageCircle, Package, Sparkles, X } from 'lucide-react';
 import { MPESA_DETAILS } from '@/data/pricing';
 
 interface NavbarProps {
@@ -10,163 +10,93 @@ interface NavbarProps {
   onOpenTracker?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenTracker }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const closeMenu = () => setMobileMenuOpen(false);
+
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-sky-100 shadow-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center text-white shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-xl font-extrabold tracking-tight text-slate-900">
-                  Safi<span className="text-sky-600">Drop</span>
-                </span>
-                <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  Kisumu
-                </span>
-              </div>
-              <p className="text-[11px] font-medium text-slate-500 leading-none">Doorstep Laundry Logistics</p>
-            </div>
-          </Link>
+    <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="SafiDrop home">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-600 text-white shadow-sm shadow-sky-900/15">
+            <Sparkles className="h-5 w-5" />
+          </span>
+          <span className="flex flex-col leading-tight">
+            <span className="text-lg font-extrabold text-slate-950">
+              Safi<span className="text-sky-600">Drop</span>
+            </span>
+            <span className="text-[10px] font-bold uppercase text-teal-700">Kisumu</span>
+          </span>
+        </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-            <a href="#services" className="hover:text-sky-600 transition-colors">
-              Pricing & Bags
-            </a>
-            <a href="#how-it-works" className="hover:text-sky-600 transition-colors">
-              How It Works
-            </a>
-            <button
-              onClick={onOpenTracker}
-              className="flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer"
-            >
-              <Search className="w-4 h-4 text-sky-500" />
-              Track Order
-            </button>
-            <a href="#partners" className="hover:text-sky-600 transition-colors">
-              For Laundromats
-            </a>
-            <Link
-              href="/dashboard"
-              className="text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium transition-colors"
-            >
-              Ops Command Center
-            </Link>
-          </nav>
+        <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-600 lg:flex">
+          <a href="#services" className="transition-colors hover:text-sky-700">Pricing</a>
+          <a href="#how-it-works" className="transition-colors hover:text-sky-700">How it works</a>
+          <a href="#partners" className="transition-colors hover:text-sky-700">Partners</a>
+        </nav>
 
-          {/* Right Action Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
-            <a
-              href={`https://wa.me/${MPESA_DETAILS.supportWhatsApp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Habari SafiDrop! I would like to inquire about laundry pickup.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all shadow-xs"
-            >
-              <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600" />
-              WhatsApp Us
-            </a>
+        <div className="hidden items-center gap-2 lg:flex">
+          <a
+            href={`https://wa.me/${MPESA_DETAILS.supportWhatsApp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Habari SafiDrop! I would like to inquire about laundry pickup.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-10 items-center gap-2 rounded-lg px-3 text-sm font-bold text-teal-700 transition-colors hover:bg-teal-50"
+          >
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp us
+          </a>
+          <button
+            type="button"
+            onClick={onOpenBooking}
+            className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-sky-600 px-4 text-sm font-bold text-white transition-colors hover:bg-sky-700"
+          >
+            <Package className="h-4 w-4" />
+            Book a pickup
+          </button>
+        </div>
 
-            <button
-              onClick={onOpenBooking}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-500 hover:to-cyan-500 shadow-md shadow-sky-600/25 hover:shadow-sky-600/35 active:scale-95 transition-all cursor-pointer"
-            >
-              <Package className="w-4 h-4" />
-              Book a Pickup
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2">
-            <button
-              onClick={onOpenBooking}
-              className="px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-sky-600"
-            >
-              Book Now
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            type="button"
+            onClick={onOpenBooking}
+            className="min-h-10 rounded-lg bg-sky-600 px-3.5 text-sm font-bold text-white transition-colors hover:bg-sky-700"
+          >
+            Book pickup
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-700"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
+            title={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-3 pb-6 space-y-4">
-          <div className="flex flex-col gap-3 font-semibold text-slate-700">
-            <a
-              href="#services"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-50"
-            >
-              Pricing & Bag Calculator
-            </a>
-            <a
-              href="#how-it-works"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-50"
-            >
-              How It Works
-            </a>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenTracker?.();
-              }}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50 text-left cursor-pointer"
-            >
-              <Search className="w-4 h-4 text-sky-500" />
-              Track My Order
-            </button>
-            <a
-              href="#partners"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-50"
-            >
-              For Partner Laundromats
-            </a>
-            <Link
-              href="/dashboard"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-100 text-slate-900"
-            >
-              <span>Ops Command Center</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBooking?.();
-              }}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-white bg-sky-600 shadow-md"
-            >
-              <Package className="w-4 h-4" />
-              Schedule Doorstep Pickup
-            </button>
-
-            <a
-              href={`https://wa.me/${MPESA_DETAILS.supportWhatsApp.replace(/[^0-9]/g, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200"
-            >
-              <MessageCircle className="w-4 h-4 text-emerald-600" />
-              Chat on WhatsApp
-            </a>
-          </div>
+        <div id="mobile-navigation" className="border-t border-slate-100 bg-white px-4 py-4 lg:hidden">
+          <nav className="mx-auto flex max-w-7xl flex-col gap-1 text-sm font-semibold text-slate-700">
+            <a href="#services" onClick={closeMenu} className="rounded-lg px-3 py-2.5 hover:bg-sky-50">Pricing &amp; bags</a>
+            <a href="#how-it-works" onClick={closeMenu} className="rounded-lg px-3 py-2.5 hover:bg-sky-50">How it works</a>
+            <a href="#partners" onClick={closeMenu} className="rounded-lg px-3 py-2.5 hover:bg-sky-50">For partners</a>
+            <Link href="/dashboard" onClick={closeMenu} className="rounded-lg px-3 py-2.5 hover:bg-sky-50">Operations dashboard</Link>
+            <div className="mt-2 border-t border-slate-100 pt-3">
+              <a
+                href={`https://wa.me/${MPESA_DETAILS.supportWhatsApp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Habari SafiDrop! I would like to inquire about laundry pickup.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg px-3 py-2.5 text-teal-700 hover:bg-teal-50"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp us
+              </a>
+            </div>
+          </nav>
         </div>
       )}
     </header>
