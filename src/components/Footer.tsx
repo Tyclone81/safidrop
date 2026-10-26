@@ -2,25 +2,21 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, MessageCircle, MapPin, ShieldCheck, Heart } from 'lucide-react';
+import { MessageCircle, MapPin, ShieldCheck, Heart } from 'lucide-react';
 import { MPESA_DETAILS } from '@/data/pricing';
+import { Logo } from './Logo';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-950 text-slate-400 text-xs border-t border-slate-800">
+    <footer className="bg-slate-950 text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <span className="text-xl font-extrabold text-white tracking-tight">
-                Safi<span className="text-sky-500">Drop</span>
-              </span>
-            </div>
+            <Link href="/" className="inline-flex" aria-label="SafiDrop home">
+              <Logo tone="onDark" />
+            </Link>
 
             <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
               On-demand laundry logistics for Kisumu. We handle pickup, partner with certified laundromats, and deliver fresh clothes to your door in 24-48 hours.
@@ -73,23 +69,21 @@ export const Footer: React.FC = () => {
                   WhatsApp Direct Line
                 </a>
               </li>
-              <li>
-                <Link
-                  href="/dashboard"
-                  className="inline-block px-3 py-1.5 rounded-lg bg-sky-950 text-sky-400 border border-sky-800 hover:bg-sky-900 transition-colors font-medium mt-1"
-                >
-                  Ops Command Center →
-                </Link>
-              </li>
             </ul>
           </div>
 
         </div>
 
         <div className="mt-12 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
-          <p>© 2026 SafiDrop Kenya. All rights reserved.</p>
+          <p>
+            © 2026 SafiDrop Kenya. All rights reserved.
+            <span className="mx-2 text-slate-700">·</span>
+            <Link href="/dashboard" className="text-slate-600 transition-colors hover:text-slate-400">
+              Staff
+            </Link>
+          </p>
           <p className="flex items-center gap-1 text-slate-400">
-            Engineered with <Heart className="w-3 h-3 text-rose-500 fill-rose-500" /> for the Glovo for Laundry model in Kisumu.
+            Made with <Heart className="w-3 h-3 text-rose-500 fill-rose-500" /> in Kisumu.
           </p>
         </div>
       </div>

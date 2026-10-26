@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
+import { SectionDivider, FooterWave } from '@/components/SectionDivider';
 import { BagCalculator } from '@/components/BagCalculator';
 import { HowItWorks } from '@/components/HowItWorks';
 import { PartnerSection } from '@/components/PartnerSection';
@@ -63,19 +64,31 @@ export default function HomePage() {
           onOpenTracker={() => handleOpenTracker()}
         />
 
+        {/* Hero -> body: blue (end of hero gradient) into white, with rising suds */}
+        <SectionDivider variant="suds" bgClass="bg-sky-600" fillClass="fill-white" />
+
         {/* Interactive Bag Calculator */}
         <BagCalculator
           onSelectItemsForBooking={handleSelectItemsFromCalculator}
         />
 
-        {/* 4-Step Operational Flow */}
+        {/* Quiet wave: white into the soft sky tint of How It Works */}
+        <SectionDivider variant="wave" compact bgClass="bg-white" fillClass="fill-sky-50" />
+
+        {/* 4-Step Operational Flow (section background: bg-sky-50) */}
         <HowItWorks
           onOpenBooking={handleOpenBooking}
         />
 
+        {/* Mirrored wave: sky tint back to white */}
+        <SectionDivider variant="wave" compact flip bgClass="bg-sky-50" fillClass="fill-white" />
+
         {/* B2B Partner Section for Laundromats */}
         <PartnerSection />
       </main>
+
+      {/* Body -> footer: layered teal / white / dark transition */}
+      <FooterWave />
 
       {/* Footer */}
       <Footer />

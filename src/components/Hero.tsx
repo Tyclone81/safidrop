@@ -28,21 +28,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
   }, []);
 
   return (
-    <section className="overflow-hidden bg-sky-700 text-white">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:px-8 lg:py-20">
+    <section
+      className="overflow-hidden bg-sky-700 text-white"
+      style={{ backgroundImage: 'linear-gradient(to bottom, #0369A1, #0284C7)' }}
+    >
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-12 pb-6 sm:px-6 sm:pt-16 sm:pb-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:px-8 lg:pt-20 lg:pb-10">
         <div className="max-w-xl text-center lg:text-left">
-          <p className="mb-5 text-xs font-bold uppercase text-teal-200">
-            Doorstep laundry in Kisumu
-          </p>
           <h1 className="text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl">
-            Dirty clothes out.
-            <span className="mt-1 block text-teal-200">Crisp laundry in.</span>
+            Let us do your
+            <span className="mt-1 block text-teal-200">dirty work.</span>
           </h1>
-          <p className="mt-5 text-base font-semibold text-teal-100 sm:text-lg">
-            Let us do your dirty work.
-          </p>
-          <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-sky-100 lg:mx-0 sm:text-lg">
-            Doorstep pickup, a proper wash, and freshly folded clothes back in 24–48 hours.
+          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-sky-100 lg:mx-0 sm:text-lg">
+            Doorstep pickup and delivery within 24–48 hours. Dirty clothes out, crisp laundry in.
           </p>
 
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
@@ -95,9 +92,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               {showCleanLaundry ? 'Freshly folded' : 'Ready for pickup'}
             </span>
           </div>
-          <p className="mt-3 text-center text-xs font-medium text-sky-100 lg:text-left">
-            From the laundry basket to neatly folded, delivered to your door.
-          </p>
         </div>
       </div>
     </section>
